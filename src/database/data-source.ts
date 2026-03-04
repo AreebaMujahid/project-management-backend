@@ -15,11 +15,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: process.env.DATABASE_HOST,
-  port: Number(process.env.DATABASE_PORT),
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
+  host: process.env.DATABASE_HOST || 'localhost',
+  port: 5433,
+  username: 'postgres',
+  password: 'postgres',
+  database: process.env.DATABASE_NAME || 'PMS-dev',
   entities: [
     isProduction
       ? 'dist/**/*.entity.js'
