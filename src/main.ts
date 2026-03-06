@@ -1,3 +1,4 @@
+import "./instrument";
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ResponseInterceptor } from './utils/interceptors/response.interceptor';

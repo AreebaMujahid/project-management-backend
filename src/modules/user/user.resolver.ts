@@ -5,8 +5,8 @@ import { UseInterceptors } from '@nestjs/common';
 @Resolver()
 @UseInterceptors(ResponseInterceptor)
 export class UserResolver {
-    @Query()
+    @Query(() => String)
     healthCheck() {
-    return { data: [{ id: 1, name: 'John Doe' }], message: 'Users fetched' };
+    return 'User service is healthy';
   }
 }
