@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { GqlContextType } from '@nestjs/graphql';
 
 export interface ApiResponse<T> {
   message?: string;
@@ -22,7 +23,10 @@ export class ResponseInterceptor<T> implements NestInterceptor<ApiResponse<T>> {
   intercept(
     context: ExecutionContext,
     next: CallHandler<ApiResponse<T>>,
-  ): Observable<{ success: true; data: T; message: string }> {
+  ): Observable<any> {
+    if (context.getType<GqlContextType>() === 'graphql') {
+      return next.handle();
+    }
     return next.handle().pipe(
       map((data) => {
         return {

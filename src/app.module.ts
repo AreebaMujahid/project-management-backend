@@ -9,6 +9,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { SentryModule } from '@sentry/nestjs/setup';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { SentryModule } from '@sentry/nestjs/setup';
     }),
     DatabaseModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
